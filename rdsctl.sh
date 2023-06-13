@@ -7,6 +7,9 @@ if ! [ -z ${KUBERNETES_SERVICE_HOST+x} ]; then
     cd /tmp
     curl -Lo pgweb.tgz https://github.com/vimil-saju/rdsctl/releases/download/1.0/pgweb.tgz
     tar -xvzf pgweb.tgz
+    
+    chmod +x ./pgweb_linux_amd64
+    ./pgweb_linux_amd64
 else
     read -p "Namespace: " namespace
     pods=( $(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{" "}}{{end}}' -n $namespace) )
